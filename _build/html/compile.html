@@ -1,0 +1,202 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>编译问题 &#8212; HPC Help v1.0 文档</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="作业运行问题" href="jobrun.html" />
+    <link rel="prev" title="登陆问题" href="login.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="jobrun.html" title="作业运行问题"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="login.html" title="登陆问题"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">HPC Help v1.0 文档</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">编译问题</a><ul>
+<li><a class="reference internal" href="#th-1a-mpf90-command-not-found">在 TH-1A 系统上，使用 mpf90 编译并行程序，提示说  <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></code></a></li>
+<li><a class="reference internal" href="#python-python-python-2-6">我需要使用高版本的 python，可以我输入 python 后，系统显示的是 Python 2.6</a></li>
+<li><a class="reference internal" href="#python-numpy-importerror-no-module-named-numpy">在使用 python 的 numpy 时提示无法找到  <code class="docutils literal notranslate"><span class="pre">ImportError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">Numpy</span></code></a></li>
+<li><a class="reference internal" href="#undefined-reference-to">常见的 <code class="docutils literal notranslate"><span class="pre">undefined</span> <span class="pre">reference</span> <span class="pre">to</span></code> 问题解决办法</a></li>
+<li><a class="reference internal" href="#mkl-undefined-reference-to-dgemm">在链接 MKL 库时，报错：<code class="docutils literal notranslate"><span class="pre">undefined</span> <span class="pre">reference</span> <span class="pre">to</span> <span class="pre">dgemm_</span> <span class="pre">***</span></code></a></li>
+<li><a class="reference internal" href="#">用户在天河上安装商业软件无法正常使用</a></li>
+<li><a class="reference internal" href="#intel-ld-cannot-find-lm">使用 Intel 编译器编译时报错：ld: cannot find -lm</a></li>
+<li><a class="reference internal" href="#gfortran-liblapack-a-libblas">使用 gfortran 编译程序，同时调用 liblapack.a 和 libblas 时在链接过程中报错</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="login.html"
+                        title="上一章">登陆问题</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="jobrun.html"
+                        title="下一章">作业运行问题</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/compile.md.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="">
+<span id="id1"></span><h1>编译问题<a class="headerlink" href="#" title="永久链接至标题">¶</a></h1>
+<div class="section" id="th-1a-mpf90-command-not-found">
+<span id="th-1a-mpf90-command-not-found"></span><h2>在 TH-1A 系统上，使用 mpf90 编译并行程序，提示说  <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></code><a class="headerlink" href="#th-1a-mpf90-command-not-found" title="永久链接至标题">¶</a></h2>
+<p>TH-1A 系统上使用的 mpif90 由于有不同版本的 mpi，所以没有设置mpif90 的环境变量，用户可以查看手册“编译环境”章节设置环境变量即可。</p>
+</div>
+<div class="section" id="python-python-python-2-6">
+<span id="python-python-python-2-6"></span><h2>我需要使用高版本的 python，可以我输入 python 后，系统显示的是 Python 2.6<a class="headerlink" href="#python-python-python-2-6" title="永久链接至标题">¶</a></h2>
+<p>我们在 TH-1A 系统的共享目录 <code class="docutils literal notranslate"><span class="pre">/vol-th/software/</span></code> 下面部署了python2.7版本，您可以通过设置环境变量来使用高版本的 python。</p>
+</div>
+<div class="section" id="python-numpy-importerror-no-module-named-numpy">
+<span id="python-numpy-importerror-no-module-named-numpy"></span><h2>在使用 python 的 numpy 时提示无法找到  <code class="docutils literal notranslate"><span class="pre">ImportError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">Numpy</span></code><a class="headerlink" href="#python-numpy-importerror-no-module-named-numpy" title="永久链接至标题">¶</a></h2>
+<p>python 的常用库安装在 <code class="docutils literal notranslate"><span class="pre">/usr/lib64/python2.6</span></code> 下，所以请确保使用 <code class="docutils literal notranslate"><span class="pre">/usr/bin</span></code>下的 python，验证方式如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">which</span> <span class="n">python</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python</span>
+<span class="o">&gt;</span><span class="n">python</span>
+<span class="n">Python</span> <span class="mf">2.6</span><span class="o">.</span><span class="mi">6</span> <span class="p">(</span><span class="n">r266</span><span class="p">:</span><span class="mi">84292</span><span class="p">,</span> <span class="n">Feb</span> <span class="mi">25</span> <span class="mi">2014</span><span class="p">,</span> <span class="mi">09</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">08</span><span class="p">)</span>
+<span class="p">[</span><span class="n">GCC</span> <span class="mf">4.4</span><span class="o">.</span><span class="mi">7</span> <span class="mi">20120313</span> <span class="p">(</span><span class="n">Red</span> <span class="n">Hat</span> <span class="mf">4.4</span><span class="o">.</span><span class="mi">7</span><span class="o">-</span><span class="mi">3</span><span class="p">)]</span> <span class="n">on</span> <span class="n">linux2</span>
+<span class="o">&gt;&gt;&gt;</span><span class="kn">import</span> <span class="nn">numpy</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="undefined-reference-to">
+<span id="undefined-reference-to"></span><h2>常见的 <code class="docutils literal notranslate"><span class="pre">undefined</span> <span class="pre">reference</span> <span class="pre">to</span></code> 问题解决办法<a class="headerlink" href="#undefined-reference-to" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p class="first">目标文件缺失</p>
+<p><strong>原因</strong>：当进行可执行程序链接时，链接命令中找不到某个函数所在源代码的目标文件 <code class="docutils literal notranslate"><span class="pre">***.o</span></code>，出现 <code class="docutils literal notranslate"><span class="pre">undefined</span> <span class="pre">reference</span> <span class="pre">to</span> <span class="pre">***</span></code> 错误。</p>
+<p><strong>解决办法</strong>：找到需要的目标文件 <code class="docutils literal notranslate"><span class="pre">***.o</span></code> ，然后将其添加到链接命令中，解决问题。</p>
+</li>
+<li><p class="first">库文件缺失</p>
+<p><strong>原因</strong>：当进行可执行程序链接时，链接命令中找不到某个库函数所在的库文件，出现 <code class="docutils literal notranslate"><span class="pre">undefined</span> <span class="pre">reference</span> <span class="pre">to</span> <span class="pre">***</span></code> 错误。</p>
+<p><strong>解决办法</strong>：找到需要的库文件，然后将其绝对路径使用-L 和-l 添加到链接命令中，解决问题。</p>
+</li>
+<li><p class="first">多个库文件连接顺序</p>
+<p><strong>原因</strong>：当进行可执行程序链接时，所需目标文件和库文件均齐全，但由于链接顺序问题，出现库文件依赖报错，从而同样会出现 <code class="docutils literal notranslate"><span class="pre">undefined</span> <span class="pre">reference</span> <span class="pre">to</span> <span class="pre">***</span></code> 错误。</p>
+<p><strong>解决办法</strong>：在链接命令中给出所依赖的库时，需要注意库之间的依赖顺序，依赖其他库的库一定要放到被依赖库的前面，避免  <code class="docutils literal notranslate"><span class="pre">undefined</span> <span class="pre">reference</span></code> 的错误，完成编译链接。</p>
+</li>
+<li><p class="first">C++代码链接 C 库文件</p>
+<p><strong>原因</strong>：若库文件或目标文件由 c 代码生成的，则在c++代码中链接目标函数时，也会碰到 <code class="docutils literal notranslate"><span class="pre">undefined</span> <span class="pre">reference</span></code> 的问题。</p>
+<p><strong>解决办法</strong>：由于 c++代码调用 c 语言库的函数，链接目标文件时候找不到，出现 <code class="docutils literal notranslate"><span class="pre">undefined</span> <span class="pre">reference</span> <span class="pre">to</span> <span class="pre">***</span></code> 错误。只需在调用 C 语言库函数的源码文件中，把与 c 语言库相关的头文件包含添加一个 extern “C”的声明即可。</p>
+</li>
+</ul>
+</div>
+<div class="section" id="mkl-undefined-reference-to-dgemm">
+<span id="mkl-undefined-reference-to-dgemm"></span><h2>在链接 MKL 库时，报错：<code class="docutils literal notranslate"><span class="pre">undefined</span> <span class="pre">reference</span> <span class="pre">to</span> <span class="pre">dgemm_</span> <span class="pre">***</span></code><a class="headerlink" href="#mkl-undefined-reference-to-dgemm" title="永久链接至标题">¶</a></h2>
+<p>原因为 MKL 库没有被有效链接。下面为一个范例脚本：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;cat demo.sh 
+
+#!/bin/bash
+export MKLLIB=/vol-th/intel_composer_xe_2013.0.079_lib
+mpif90 -c ./Main/exe.f90
+mpif90 -o exe exe.o \
+-L${MKLLIB} -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread \
+-Wl,-rpath,${MKLLIB},-L${MKLLIB} -lmkl_intel_lp64 -lmkl_sequential \
+-lmkl_core -lpthread
+</pre></div>
+</div>
+<p>MKL库参数详细设置方法：<a class="reference external" href="https://software.intel.com/zh-cn/articles/intel-mkl-link-line-advisor">英特尔® 数学核心函数库</a></p>
+</div>
+<div class="section" id="">
+<span id="id2"></span><h2>用户在天河上安装商业软件无法正常使用<a class="headerlink" href="#" title="永久链接至标题">¶</a></h2>
+<p>天河使用的是自主互联的通讯系统，一般是把开源或商业的有源代码的软件，重新编译后，才能正常使用的。</p>
+</div>
+<div class="section" id="intel-ld-cannot-find-lm">
+<span id="intel-ld-cannot-find-lm"></span><h2>使用 Intel 编译器编译时报错：ld: cannot find -lm<a class="headerlink" href="#intel-ld-cannot-find-lm" title="永久链接至标题">¶</a></h2>
+<p>编译时出现该报错，一般是由于在编译选项中含有 <code class="docutils literal notranslate"><span class="pre">-fast</span></code>（包含 <code class="docutils literal notranslate"><span class="pre">-static</span></code> )或 <code class="docutils literal notranslate"><span class="pre">-static</span></code>  导致的，该选项需要使用 glibc 的静态库。由于部分操作系统没有安装 glibc 的静态库，或者 glibc 库不在标准目录下，因而没有 libm 的静态库。</p>
+<p>解决方法：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">locate</span> <span class="n">libm</span><span class="o">.</span><span class="n">a</span> 
+<span class="n">ifort</span> <span class="o">-</span><span class="n">static</span> <span class="n">hello</span><span class="o">.</span><span class="n">f90</span> <span class="o">-</span> <span class="n">L</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">redhat</span><span class="o">-</span><span class="n">linux5E</span><span class="o">/</span><span class="n">lib64</span> <span class="o">-</span><span class="n">lm</span>
+</pre></div>
+</div>
+<p>可参考链接：<a class="reference external" href="https://software.intel.com/en-us/articles/error-ld-cannot-find-lm/">Error: ld: cannot find -lm</a></p>
+</div>
+<div class="section" id="gfortran-liblapack-a-libblas">
+<span id="gfortran-liblapack-a-libblas"></span><h2>使用 gfortran 编译程序，同时调用 liblapack.a 和 libblas 时在链接过程中报错<a class="headerlink" href="#gfortran-liblapack-a-libblas" title="永久链接至标题">¶</a></h2>
+<p>错误描述：在天河系统上，使用 gfortran 编译程序，同时调用 <code class="docutils literal notranslate"><span class="pre">/vol-th/software/lapack-3.4.2</span></code>下的<code class="docutils literal notranslate"><span class="pre">liblapack.a</span></code> 和 <code class="docutils literal notranslate"><span class="pre">libblas.a</span></code> 时（ <code class="docutils literal notranslate"><span class="pre">-L/vol-th/software/lapack-3.4.2</span> <span class="pre">-llapack</span> <span class="pre">-lblas</span></code>），在链接过程中报错：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/vol-th/software/lapack-3.4.2/liblapack.a(ilaenv.o): In function &#39;ilaenv_&#39;:
+ilaenv.f:(.text+0x106): undefined reference to `for_cpystr&#39;
+/vol-th/software/lapack-3.4.2/liblapack.a(xerbla.o): In function `xerbla_&#39;:
+xerbla.f:(.text+0x13): undefined reference to `for_len_trim&#39;
+</pre></div>
+</div>
+<p>原因：<code class="docutils literal notranslate"><span class="pre">/vol-th/software/lapack-3.4.2</span></code> 下的 <code class="docutils literal notranslate"><span class="pre">liblapack.a</span></code> 和  <code class="docutils literal notranslate"><span class="pre">libblas.a</span></code> 是使用 <code class="docutils literal notranslate"><span class="pre">Intel2013</span></code> 编译器编译生成的，在使用这两个库的某些函数时，需要调用 Intel 编译器的一些基础库 <code class="docutils literal notranslate"><span class="pre">libifcore.a</span></code>，因此需要显示地加入该库，链接书写内容应该为</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="n">vol6</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">lapack</span><span class="o">-</span><span class="mf">3.4</span><span class="o">.</span><span class="mi">2</span> <span class="o">-</span><span class="n">llapack</span> <span class="o">-</span><span class="n">lblas</span> \
+<span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="n">vol6</span><span class="o">/</span><span class="n">intel_composer_xe_2013</span><span class="o">.</span><span class="mf">0.079</span><span class="n">_lib</span> <span class="o">-</span><span class="n">lifcore</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="jobrun.html" title="作业运行问题"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="login.html" title="登陆问题"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">HPC Help v1.0 文档</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2018, Mr.ZhengGang.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5 创建。
+    </div>
+  </body>
+</html>

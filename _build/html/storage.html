@@ -1,0 +1,134 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>存储问题 &#8212; HPC Help v1.0 文档</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="GPU" href="gpu.html" />
+    <link rel="prev" title="作业运行问题" href="jobrun.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="gpu.html" title="GPU"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="jobrun.html" title="作业运行问题"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">HPC Help v1.0 文档</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">存储问题</a><ul>
+<li><a class="reference internal" href="#ls">我使用 ls 命令查看目录下的文件，可是一直停留下那里，没有显示</a></li>
+<li><a class="reference internal" href="#disk-quota-exceeded">执行文件操作时提示：“Disk quota exceeded”</a></li>
+<li><a class="reference internal" href="#forrtl-input-output-error">作业运行提示“forrtl: Input/output error”</a></li>
+<li><a class="reference internal" href="#forrtl-no-space-left-on-device-forrtl-severe-38-error-during-write-unit-12">作业运行时报错：<code class="docutils literal notranslate"><span class="pre">forrtl:</span> <span class="pre">No</span> <span class="pre">space</span> <span class="pre">left</span> <span class="pre">on</span> <span class="pre">device，forrtl:</span> <span class="pre">severe</span> <span class="pre">(38):</span> <span class="pre">error</span> <span class="pre">during</span> <span class="pre">write,</span> <span class="pre">unit</span> <span class="pre">12</span></code> ，但是同样的作业再次提交时可能就正常运行完成</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="jobrun.html"
+                        title="上一章">作业运行问题</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="gpu.html"
+                        title="下一章">GPU</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/storage.md.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="">
+<span id="id1"></span><h1>存储问题<a class="headerlink" href="#" title="永久链接至标题">¶</a></h1>
+<div class="section" id="ls">
+<span id="ls"></span><h2>我使用 ls 命令查看目录下的文件，可是一直停留下那里，没有显示<a class="headerlink" href="#ls" title="永久链接至标题">¶</a></h2>
+<p>遇到这个问题，您可以等待一会，再重新使用 ls 命令查看目录文件。</p>
+<ul class="simple">
+<li>原因之一：可能是 TH-1A 的登录节点负载比较重，造成使用终端命令受到影响</li>
+<li>原因之二：可能是用户客户端的网络负载比较重，出现比较严重的网络延迟</li>
+<li>原因之三：可能是 TH-1A 系统的存储正在进行恢复调整。</li>
+</ul>
+</div>
+<div class="section" id="disk-quota-exceeded">
+<span id="disk-quota-exceeded"></span><h2>执行文件操作时提示：“Disk quota exceeded”<a class="headerlink" href="#disk-quota-exceeded" title="永久链接至标题">¶</a></h2>
+<p>原因为用户的磁盘配额已超限，天河系统针对用户的数据量和文件数量分别设有上限，可通过 lfs quota 命令查看具体信息；可通过删除临时数据来降低数据量和文件数量。命令行下输入 <code class="docutils literal notranslate"><span class="pre">lfs</span> <span class="pre">quota</span> <span class="pre">-g</span> <span class="pre">用户组名</span> <span class="pre">/存储文件系统名</span></code> ，用于查看所在用户组的配额权限；命令行下输入 <code class="docutils literal notranslate"><span class="pre">lfs</span> <span class="pre">quota</span> <span class="pre">-u</span> <span class="pre">用户名</span> <span class="pre">/存储文件系统名</span></code> ，用于查看所在用户的配额权限。</p>
+</div>
+<div class="section" id="forrtl-input-output-error">
+<span id="forrtl-input-output-error"></span><h2>作业运行提示“forrtl: Input/output error”<a class="headerlink" href="#forrtl-input-output-error" title="永久链接至标题">¶</a></h2>
+<p>可能是存储某一时刻压力较大，造成 IO 错误，请您重新提交作业。</p>
+</div>
+<div class="section" id="forrtl-no-space-left-on-device-forrtl-severe-38-error-during-write-unit-12">
+<span id="forrtl-no-space-left-on-device-forrtl-severe-38-error-during-write-unit-12"></span><h2>作业运行时报错：<code class="docutils literal notranslate"><span class="pre">forrtl:</span> <span class="pre">No</span> <span class="pre">space</span> <span class="pre">left</span> <span class="pre">on</span> <span class="pre">device，forrtl:</span> <span class="pre">severe</span> <span class="pre">(38):</span> <span class="pre">error</span> <span class="pre">during</span> <span class="pre">write,</span> <span class="pre">unit</span> <span class="pre">12</span></code> ，但是同样的作业再次提交时可能就正常运行完成<a class="headerlink" href="#forrtl-no-space-left-on-device-forrtl-severe-38-error-during-write-unit-12" title="永久链接至标题">¶</a></h2>
+<p>该问题主要由文件系统中某一 OST 存储已满导致，请联系与您对接的工程师或系统管理员。Lustre 文件系统由若干 IO 服务器（Object Storage Services）和 Object Storage Targets(OST)组成。当对一个文件进行读写操作时，为了提高 IO 效率，文件系统会自动将该文件的读写操作分割成多个，在多个 OST 上并发实现，该过程也被称为 file striping。如果在该过程中，使用到的某一 OST 出现问题，就会发生读写错误。</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="gpu.html" title="GPU"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="jobrun.html" title="作业运行问题"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">HPC Help v1.0 文档</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; 版权所有 2018, Mr.ZhengGang.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5 创建。
+    </div>
+  </body>
+</html>
